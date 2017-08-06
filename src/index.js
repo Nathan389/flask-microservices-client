@@ -33,9 +33,9 @@ class App extends Component {
                         <br/>
                         <h1>All Users</h1>
                         <hr/><br/>
-                        <AddUser addUser={this.addUser.bind(this)}/>
-                        <br/>
                         <UsersList users={this.state.users}/>
+                        <br/>
+                        
                     </div>
                 </div>
             </div>
