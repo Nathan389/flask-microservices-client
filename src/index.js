@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import UsersList from './components/UsersList';
+import AddUser from './components/AddUser';
 
 class App extends Component {
     constructor() {
@@ -19,6 +20,11 @@ class App extends Component {
         .then((res) => { this.setState({ users: res.data.data.users }); })
         .catch((err) => { console.log(err); })
     }
+    addUser(event) {
+        event.preventDefault();
+        console.log('sanity check!')
+        console.log(this)
+    }
     render() {
         return (
             <div className="container">
@@ -27,7 +33,9 @@ class App extends Component {
                         <br/>
                         <h1>All Users</h1>
                         <hr/><br/>
-                            <UsersList users={this.state.users}/>
+                        <AddUser addUser={this.addUser.bind(this)}/>
+                        <br/>
+                        <UsersList users={this.state.users}/>
                     </div>
                 </div>
             </div>
