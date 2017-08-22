@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class UserStatus extends Component {
   constructor (props) {
@@ -14,7 +14,7 @@ class UserStatus extends Component {
   }
   componentDidMount() {
     if (this.props.isAuthenticated) {
-       this.getUserStatus();
+      this.getUserStatus();
     }
   }
   getUserStatus(event) {
@@ -27,8 +27,7 @@ class UserStatus extends Component {
       }
     };
     return axios(options)
-    .then((res) => { 
-      console.log(res.data.data);
+    .then((res) => {
       this.setState({
         created_at: res.data.data.created_at,
         email: res.data.data.email,
@@ -44,7 +43,6 @@ class UserStatus extends Component {
     }
     return (
       <div>
-        <p>test</p>
         <ul>
           <li><strong>User ID:</strong> {this.state.id}</li>
           <li><strong>Email:</strong> {this.state.email}</li>

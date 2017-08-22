@@ -32,12 +32,12 @@ const NavBar = (props) => (
         }
         {!props.isAuthenticated &&
           <LinkContainer to="/login">
-          <NavItem eventKey={2}>Log In</NavItem>  
-        </LinkContainer>
+            <NavItem eventKey={2}>Log In</NavItem>
+          </LinkContainer>
         }
         {props.isAuthenticated &&
           <LinkContainer to="/logout">
-            <NavItem eventKey={3}>Log out</NavItem>
+            <NavItem eventKey={3}>Log Out</NavItem>
           </LinkContainer>
         }
       </Nav>
