@@ -93,7 +93,7 @@ class Form extends Component {
     if (formData.password.length > 10) rules[3].valid = true;
     this.setState({formRules: rules})
     if (this.allTrue()) this.setState({valid: true});
-    }
+  }
   validateEmail(email) {
     // eslint-disable-next-line
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

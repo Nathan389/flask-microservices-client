@@ -21,23 +21,13 @@ class App extends Component {
       messageType: null
     }
   }
+  componentWillMount() {
+    if (window.localStorage.getItem('authToken')) {
+      this.setState({ isAuthenticated: true });
+    }
+  }
   componentDidMount() {
     this.getUsers();
-  }
-  getUsers() {
-    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
-      .then((res) => { this.setState({ users: res.data.data.users }); })
-      .catch((err) => { console.log(err); })
-  }
-  logoutUser() {
-    window.localStorage.clear();
-    this.setState({ isAuthenticated: false });
-  }
-  loginUser(token) {
-    window.localStorage.setItem('authToken', token);
-    this.setState({ isAuthenticated: true });
-    this.getUsers();
-    this.createMessage('Welcome!', 'success');
   }
   createMessage(name='Sanity Check', type='success') {
     this.setState({
@@ -53,6 +43,21 @@ class App extends Component {
       messageName: null,
       messageType: null
     })
+  }
+  getUsers() {
+    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
+    .then((res) => { this.setState({ users: res.data.data.users }); })
+    .catch((err) => { console.log(err); })
+  }
+  logoutUser() {
+    window.localStorage.clear();
+    this.setState({ isAuthenticated: false });
+  }
+  loginUser(token) {
+    window.localStorage.setItem('authToken', token);
+    this.setState({ isAuthenticated: true });
+    this.getUsers();
+    this.createMessage('Welcome!', 'success');
   }
   render() {
     return (
@@ -74,9 +79,9 @@ class App extends Component {
               <br/>
               <Switch>
                 <Route exact path='/' render={() => (
-                    <UsersList 
-                        users={this.state.users}
-                    />
+                  <UsersList
+                    users={this.state.users}
+                  />
                 )} />
                 <Route exact path='/about' component={About}/>
                 <Route exact path='/register' render={() => (
@@ -89,7 +94,7 @@ class App extends Component {
                 )} />
                 <Route exact path='/login' render={() => (
                   <Form
-                    formType={'Login'}
+                    formType={'login'}
                     isAuthenticated={this.state.isAuthenticated}
                     loginUser={this.loginUser.bind(this)}
                     createMessage={this.createMessage.bind(this)}
