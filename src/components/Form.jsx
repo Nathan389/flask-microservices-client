@@ -143,7 +143,7 @@ class Form extends Component {
           formType={this.props.formType}
           formRules={this.state.formRules}
         />
-        <form onSubmit={(event) => this.props.handleUserFormSubmit(event)}>
+        <form onSubmit={(event) => this.handleUserFormSubmit(event)}>
           {this.props.formType === 'register' &&
             <div className="form-group">
               <input
@@ -152,8 +152,8 @@ class Form extends Component {
                 type="text"
                 placeholder="Enter a username"
                 required
-                value={this.props.formData.username}
-                onChange={this.props.handleFormChange}
+                value={this.state.formData.username}
+                onChange={this.handleFormChange.bind(this)}
               />
             </div>
           }
@@ -164,8 +164,8 @@ class Form extends Component {
               type="email"
               placeholder="Enter an email address"
               required
-              value={this.props.formData.email}
-              onChange={this.props.handleFormChange}
+              value={this.state.formData.email}
+              onChange={this.handleFormChange.bind(this)}
             />
           </div>
           <div className="form-group">
@@ -175,8 +175,8 @@ class Form extends Component {
               type="password"
               placeholder="Enter a password"
               required
-              value={this.props.formData.password}
-              onChange={this.props.handleFormChange}
+              value={this.state.formData.password}
+              onChange={this.handleFormChange.bind(this)}
             />
           </div>
           <input
@@ -185,9 +185,9 @@ class Form extends Component {
             value="Submit"
             disabled={!this.state.valid}
           />
-          </form>
-        </div>
-      )
+        </form>
+      </div>
+    )
   }
 }
 
